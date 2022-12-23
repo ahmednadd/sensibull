@@ -4,6 +4,9 @@ import './stocks.scss';
 import { getReq } from '../../utils/api';
 import { baseUrl } from '../../utils/base';
 
+//Assets
+import RightCaret from '../../assets/icons/right-caret.svg';
+
 const Stocks = () => {
     const [data, setData] = useState([]);
 
@@ -37,31 +40,30 @@ const Stocks = () => {
 
     return (
         <div className="stocks-wrapper">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Symbol</th>
-                        <th>Name</th>
-                        <th>Sector</th>
-                        <th>Valid till</th>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="stocks-wrapper-table">
+                <div className="stocks-wrapper-table-header">
+                    <div>Symbol</div>
+                    <div>Name</div>
+                    <div>Sector</div>
+                    <div>Valid till</div>
+                    <div />
+                </div>
+                <div className="stocks-wrapper-table-body">
                     {data.map((item, index) => {
-                        if (item) {
-                            console.log('item', item);
+                        if (item.Symbol) {
                             return (
-                                <tr key={index}>
-                                    <td>{item.Symbol}</td>
-                                    <td>{item.Name}</td>
-                                    <td>{item.Sector}</td>
-                                    <td>{item.Validtill}</td>
-                                </tr>
+                                <div key={index} className="stocks-wrapper-table-body-item">
+                                    <div>{item.Symbol}</div>
+                                    <div>{item.Name}</div>
+                                    <div>{item.Sector || '---'}</div>
+                                    <div>{item.Validtill}</div>
+                                    <img src={RightCaret} alt="Icon" />
+                                </div>
                             );
                         } else return null;
                     })}
-                </tbody>
-            </table>
+                </div>
+            </div>
         </div>
     );
 };

@@ -15,6 +15,5 @@ const apiGetHelper = async ({ url }) => {
 
 export const getReq = (req) => {
     const response = apiGetHelper(req);
-    console.log(response);
     return response;
 };
