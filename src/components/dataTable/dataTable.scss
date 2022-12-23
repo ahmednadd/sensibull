@@ -1,0 +1,50 @@
+.wrapper-table {
+    margin-top: 60px;
+    &-header {
+        height: 40px;
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr 1fr 30px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        align-items: center;
+        font-size: 12px;
+        font-weight: 700;
+        padding-left: 5px;
+        color: rgba(0, 0, 0, 0.5);
+    }
+    &-body {
+        margin-top: 20px;
+        &-item {
+            font-size: 14px;
+            font-weight: 600;
+            display: grid;
+
+            padding: 15px 5px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            align-items: center;
+            cursor: pointer;
+
+            &:nth-child(odd) {
+                background-color: hsla(0, 0%, 100%, 0.32);
+                &:hover {
+                    background-color: hsla(0, 0%, 100%, 0.7);
+                }
+            }
+            &:nth-child(even) {
+                &:hover {
+                    background-color: hsla(0, 0%, 100%, 0.5);
+                }
+                background-color: hsla(0, 0%, 100%, 0.02);
+            }
+            img {
+                height: 20px;
+            }
+        }
+        &-stocks {
+            grid-template-columns: 1fr 2fr 1fr 1fr 30px;
+        }
+        &-quotes {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    }
+}

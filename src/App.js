@@ -1,17 +1,16 @@
 import './App.css';
-import Footer from './components/footer';
-import Header from './components/header';
+import Footer from './pages/footer';
+import Header from './pages/header';
 import Layout from './layout';
 
 function App() {
-
-  return (
-    <div className="App">
-      <Header />
-      <Layout />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Header />
+            <Layout />
+            <Footer />
+        </div>
+    );
 }
 
 export default App;

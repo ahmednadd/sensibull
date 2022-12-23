@@ -2,4 +2,14 @@
     height: calc(100vh - 127px);
     padding: 100px 150px;
     box-sizing: border-box;
+    &-header {
+        display: flex;
+        width: 100%;
+        align-items: center;
+
+        h1 {
+            width: 200px;
+            margin-right: 100px;
+        }
+    }
 }
