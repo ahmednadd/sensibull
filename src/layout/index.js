@@ -3,17 +3,22 @@ import './layout.scss';
 
 //Components
 import Stocks from '../pages/stocks';
-import FuzzySearch from '../components/fuzzySearch';
+import CustomFuzzySearch from '../components/fuzzySearch';
 import Quotes from '../pages/quotes';
 
 //Helpers
 import { getReq } from '../utils/api';
 import { baseUrl } from '../utils/base';
+import FuzzySearch from 'fuzzy-search';
+
+//Assets
+import RightCaret from '../assets/icons/right-caret.svg';
 
 const Layout = () => {
-    const [isSelected, setIsSelected] = useState(false);
     const [stocksData, setStocksData] = useState([]);
     const [selectedStock, setSelectedStock] = useState(null);
+    const [selectedStockSymbol, setSelectedStockSymbol] = useState('');
+    const [searchKeyword, setSearchKeyword] = useState('');
 
     useEffect(() => {
         getAllStocks();
@@ -43,6 +48,7 @@ const Layout = () => {
             let newData = Object.values(payload);
             newData = newData.flat();
             setSelectedStock(newData);
+            setSelectedStockSymbol(Object.keys(payload)[0]);
         }
     };
 
@@ -64,23 +70,37 @@ const Layout = () => {
 
     const getSelectedItem = (symbol) => {
         getSelectedStock(symbol);
-        setIsSelected(true);
     };
 
-    const goBack = () => {
-        setIsSelected(false);
+    const searcher = new FuzzySearch(stocksData, ['Symbol', 'Name'], {
+        caseSensitive: false
+    });
+
+    let result = searcher.search(searchKeyword);
+
+    const handleSearch = (value) => {
+        setSearchKeyword(value);
     };
+
+    console.log('searchKeyword', searchKeyword);
 
     return (
         <div className="layout-wrapper">
             <div className="layout-wrapper-header">
-                <h1>{isSelected ? 'Quotes' : 'Stocks'}</h1>
-                <FuzzySearch />
+                <h1>{selectedStockSymbol?.length ? `Quotes :` : 'Stocks'}</h1>
+                <span>{selectedStockSymbol || ''}</span>
+                {selectedStockSymbol?.length ? (
+                    <div onClick={() => setSelectedStockSymbol('')} className="layout-wrapper-header-back">
+                        <img src={RightCaret} alt="Icon" />
+                    </div>
+                ) : (
+                    <CustomFuzzySearch searchKeyword={searchKeyword} handleSearch={handleSearch} />
+                )}
             </div>
-            {isSelected ? (
-                <Quotes goBack={goBack} selectedStock={selectedStock} />
+            {selectedStockSymbol?.length ? (
+                <Quotes selectedStock={selectedStock} />
             ) : (
-                <Stocks getSelectedItem={getSelectedItem} stocksData={stocksData} />
+                <Stocks getSelectedItem={getSelectedItem} stocksData={result} />
             )}
         </div>
     );

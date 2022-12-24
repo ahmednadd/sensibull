@@ -3,11 +3,11 @@ import DataTable from '../../components/dataTable';
 import './quotes.scss';
 
 const Quotes = (props) => {
-    const { selectedStock, goBack } = props;
+    const { selectedStock } = props;
 
     return (
         <div className="quotes-wrapper">
-            <DataTable type={'quotes'} headerData={['Time', 'Price', 'Valid till']} bodyData={selectedStock} onClick={goBack} />
+            <DataTable type={'quotes'} headerData={['Time', 'Price', 'Valid till']} bodyData={selectedStock} />
         </div>
     );
 };

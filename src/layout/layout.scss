@@ -1,15 +1,40 @@
 .layout-wrapper {
-    height: calc(100vh - 127px);
-    padding: 100px 150px;
+    height: 100vh;
+    overflow: hidden;
+    padding: 200px 150px;
     box-sizing: border-box;
     &-header {
         display: flex;
         width: 100%;
         align-items: center;
-
+        justify-content: space-between;
         h1 {
-            width: 200px;
-            margin-right: 100px;
+            min-width: 120px;
+        }
+        span {
+            margin-right: auto;
+            color: rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            font-size: 22px;
+        }
+        &-back {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            border: 1px solid #c73e1d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 150ms ease-in-out;
+            box-sizing: border-box;
+            transform: rotateY(180deg);
+            &:hover {
+                border: 1px solid rgba(0, 0, 0, 1);
+            }
+            img {
+                height: 20px;
+            }
         }
     }
 }
