@@ -1,5 +1,6 @@
 .search-wrapper {
     width: 100%;
+    position: relative;
     input {
         margin: 0;
         background-color: transparent;
@@ -17,5 +18,11 @@
         &::placeholder {
             color: rgba(0, 0, 0, 0.3);
         }
+    }
+    img {
+        cursor: pointer;
+        height: 20px;
+        position: absolute;
+        top: 13px;
     }
 }

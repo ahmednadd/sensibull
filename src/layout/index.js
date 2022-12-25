@@ -20,10 +20,12 @@ const Layout = () => {
     const [selectedStockSymbol, setSelectedStockSymbol] = useState('');
     const [searchKeyword, setSearchKeyword] = useState('');
 
+    // useEffect hook to fetch all stocks data when the component mounts
     useEffect(() => {
         getAllStocks();
     }, []);
 
+    // function to fetch all stocks data from the API
     const getAllStocks = async () => {
         let url = `${baseUrl}/instruments`;
         const response = await getReq(
@@ -35,6 +37,7 @@ const Layout = () => {
         formatResponse(response);
     };
 
+    // function to fetch selected stock data from the API
     const getSelectedStock = async (symbol) => {
         let url = `${baseUrl}/quotes/${symbol}`;
         const response = await getReq(
@@ -52,6 +55,7 @@ const Layout = () => {
         }
     };
 
+    // function to format the response data from the API
     const formatResponse = (response) => {
         const lines = response.split('\n');
 
@@ -78,11 +82,15 @@ const Layout = () => {
 
     let result = searcher.search(searchKeyword);
 
+    // function to handle changes to the search keyword
     const handleSearch = (value) => {
         setSearchKeyword(value);
     };
 
-    console.log('searchKeyword', searchKeyword);
+    // function to clear the search keyword
+    const clearKeyword = () => {
+        setSearchKeyword('');
+    };
 
     return (
         <div className="layout-wrapper">
@@ -94,7 +102,7 @@ const Layout = () => {
                         <img src={RightCaret} alt="Icon" />
                     </div>
                 ) : (
-                    <CustomFuzzySearch searchKeyword={searchKeyword} handleSearch={handleSearch} />
+                    <CustomFuzzySearch clearKeyword={clearKeyword} searchKeyword={searchKeyword} handleSearch={handleSearch} />
                 )}
             </div>
             {selectedStockSymbol?.length ? (
