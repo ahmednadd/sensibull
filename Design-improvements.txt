@@ -1,0 +1,14 @@
+Sensibull Assignment 
+
+Design/Architecture
+
+*Used conditional rendering for Stocks and Quotes pages. (since it was just 2 pages) 
+*Used Montserrat font.
+*API middleware.
+*Simple and minimalistic design.
+
+Improvements/bugs
+
+*Router should have been used.
+*One small bug while sorting quotes page with Time (It doesn’t go back to original state ).
+ Re-rendring the quotes page with valid time expires could have been optimized since multiple api calls happening with same response data until updated one.
