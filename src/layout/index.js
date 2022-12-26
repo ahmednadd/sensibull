@@ -10,6 +10,7 @@ import Quotes from '../pages/quotes';
 import { getReq } from '../utils/api';
 import { baseUrl } from '../utils/base';
 import FuzzySearch from 'fuzzy-search';
+import { formattedDate } from '../utils';
 
 //Assets
 import RightCaret from '../assets/icons/right-caret.svg';
@@ -69,11 +70,16 @@ const Layout = () => {
             }, {});
         });
 
-        setStocksData(result);
-    };
+        //formatting the date
+        if (result?.length) {
+            result.forEach((element) => {
+                if (element.Validtill) {
+                    element.Validtill = formattedDate(element.Validtill);
+                }
+            });
+        }
 
-    const getSelectedItem = (symbol) => {
-        getSelectedStock(symbol);
+        setStocksData(result);
     };
 
     const searcher = new FuzzySearch(stocksData, ['Symbol', 'Name'], {
@@ -106,9 +112,9 @@ const Layout = () => {
                 )}
             </div>
             {selectedStockSymbol?.length ? (
-                <Quotes selectedStock={selectedStock} />
+                <Quotes selectedStockSymbol={selectedStockSymbol} getSelectedStock={getSelectedStock} selectedStock={selectedStock} />
             ) : (
-                <Stocks getSelectedItem={getSelectedItem} stocksData={result} />
+                <Stocks getSelectedStock={getSelectedStock} stocksData={result} />
             )}
         </div>
     );

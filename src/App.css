@@ -1,3 +1,7 @@
+/* colors */
+.c-lightgrey {
+    color: rgba(0, 0, 0, 0.2);
+}
 .App {
     height: 100vh;
     width: 100%;
@@ -15,6 +19,30 @@
 
 h1 {
     font-size: 24px;
+}
+
+.fw600 {
+    font-weight: 600;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.pos-rel {
+    position: relative;
+}
+
+.pos-abs {
+    position: absolute;
+}
+
+.r-0p {
+    right: 0;
+}
+
+.t-m20p {
+    top: -20px;
 }
 
 .h-10 {

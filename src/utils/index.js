@@ -31,3 +31,46 @@ export const fuzzySearch = (query, string) => {
     // the length of the query to be considered a match
     return matchCount >= queryChars.length;
 };
+
+export const formattedDate = (item) => {
+    let utc = new Date(item);
+
+    // Get the time zone offset from UTC, in minutes
+    let offset = utc.getTimezoneOffset();
+    let gmt = new Date(utc - offset * 60 * 1000);
+
+    gmt = gmt.toString();
+    gmt = new Date(gmt);
+    // Extract the date and time information from the Date object
+    let year = gmt.getFullYear();
+    let month = gmt.getMonth() + 1; // Note: getMonth() returns a zero-based month index
+    let day = gmt.getDate();
+    let hours = gmt.getHours();
+    let minutes = gmt.getMinutes();
+    let seconds = gmt.getSeconds();
+
+    month = month.toString().padStart(2, '0');
+    day = day.toString().padStart(2, '0');
+    hours = hours.toString().padStart(2, '0');
+    minutes = minutes.toString().padStart(2, '0');
+    seconds = seconds.toString().padStart(2, '0');
+
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
+
+export const getExpiredTime = (item) => {
+    // Parse the given time into a Date object
+    console.log(item);
+    let time = new Date(item);
+
+    // Convert the Date object to a numeric timestamp using the getTime() method
+    let timeTimestamp = time.getTime();
+
+    // Get the current time as a numeric timestamp using the Date.now() method
+    let nowTimestamp = Date.now();
+
+    // Compare the timestamps to determine if the given time intersects with the current time
+    if (timeTimestamp < nowTimestamp) {
+        return true;
+    } else return false;
+};

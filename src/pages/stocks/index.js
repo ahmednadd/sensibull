@@ -4,7 +4,7 @@ import './stocks.scss';
 import DataTable from '../../components/dataTable';
 
 const Stocks = (props) => {
-    const { getSelectedItem, stocksData } = props;
+    const { getSelectedStock, stocksData } = props;
 
     return (
         <div className="stocks-wrapper">
@@ -12,7 +12,7 @@ const Stocks = (props) => {
                 type={'stocks'}
                 headerData={['Symbol', 'Name', 'Sector', 'Valid till']}
                 bodyData={stocksData}
-                onClick={getSelectedItem}
+                onClick={getSelectedStock}
             />
         </div>
     );
